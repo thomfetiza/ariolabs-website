@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BrandLogo from './BrandLogo';
 
 const Footer: React.FC = () => {
-  const logoUrl = `${import.meta.env.BASE_URL}images/logo.png`;
-
   return (
     <footer className="border-t border-slate-800 bg-deep-navy text-white">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-10 md:flex-row md:items-end md:justify-between md:px-8">
         <div>
-          <img src={logoUrl} alt="ArioLabs" className="h-10 w-auto" />
+          <BrandLogo />
           <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">One supported workflow. Your existing software. Customer-approved rules and a human exception gate.</p>
           <a href="mailto:info@ariolabs.tech" className="mt-3 inline-block text-sm font-semibold text-light-teal hover:underline">info@ariolabs.tech</a>
         </div>

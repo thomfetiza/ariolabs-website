@@ -1,5 +1,6 @@
-import React from 'react';
-import { ArrowRight, Check, ShieldCheck, UserCheck, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { ArrowRight, Check, CheckCircle2, FileCheck2, Play, RotateCcw, ShieldCheck, UserCheck, X } from 'lucide-react';
 
 const steps = [
   ['Trigger', 'The exact event that starts the workflow.'],
@@ -27,7 +28,22 @@ const boundaries = [
 ];
 
 const HomePage: React.FC = () => {
+  const location = useLocation();
+  const [demoStep, setDemoStep] = useState(-1);
   const contactHref = 'mailto:info@ariolabs.tech?subject=One%20Workflow%20Autopilot%20fit%20check&body=The%20workflow%20we%20still%20chase%20manually%20is%3A%0A%0AThe%20software%20we%20already%20use%20is%3A';
+
+  const scrollTo = (sectionId: string) => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  useEffect(() => {
+    const sectionId = new URLSearchParams(location.search).get('section');
+    if (sectionId) window.setTimeout(() => scrollTo(sectionId), 50);
+  }, [location.search]);
+
+  useEffect(() => {
+    if (demoStep < 0 || demoStep >= steps.length) return;
+    const timer = window.setTimeout(() => setDemoStep((current) => current + 1), 650);
+    return () => window.clearTimeout(timer);
+  }, [demoStep]);
 
   return (
     <div className="bg-white">
@@ -46,9 +62,9 @@ const HomePage: React.FC = () => {
               ArioLabs maps one supported workflow across the tools you already use, proves the logic in a sandbox, tests it with you, and launches only after you approve the acceptance checklist.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href="#sandbox" className="inline-flex items-center justify-center rounded-lg bg-electric-teal px-7 py-4 font-bold text-deep-navy transition hover:bg-light-teal">
+              <button type="button" onClick={() => scrollTo('sandbox-demo')} className="inline-flex items-center justify-center rounded-lg bg-electric-teal px-7 py-4 font-bold text-deep-navy transition hover:bg-light-teal">
                 See the Sandbox <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+              </button>
               <a href={contactHref} className="inline-flex items-center justify-center rounded-lg border border-slate-500 px-7 py-4 font-bold text-white transition hover:border-white hover:bg-white/10">
                 Show Us the Workflow
               </a>
@@ -56,7 +72,7 @@ const HomePage: React.FC = () => {
             <p className="mt-6 text-sm font-semibold text-slate-300">No rip-and-replace. No mandatory retainer. Human judgment stays human.</p>
           </div>
 
-          <div id="sandbox" className="min-w-0 rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-2xl backdrop-blur md:p-7">
+          <div id="sandbox-demo" className="scroll-mt-24 min-w-0 rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-2xl backdrop-blur md:p-7">
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-light-teal">Illustrative sandbox</p>
@@ -66,8 +82,8 @@ const HomePage: React.FC = () => {
             </div>
             <div className="space-y-3">
               {steps.map(([title, description], index) => (
-                <div key={title} className="flex gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-electric-teal font-bold text-deep-navy">{index + 1}</span>
+                <div key={title} className={`flex gap-4 rounded-xl border p-4 transition-all duration-300 ${demoStep === index ? 'border-electric-teal bg-cyan-950/70 shadow-[0_0_0_1px_rgba(6,182,212,.25)]' : demoStep > index ? 'border-emerald-700 bg-emerald-950/30' : 'border-slate-700 bg-slate-800/80'}`}>
+                  <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-bold ${demoStep > index ? 'bg-emerald-400 text-emerald-950' : 'bg-electric-teal text-deep-navy'}`}>{demoStep > index ? <Check className="h-5 w-5" /> : index + 1}</span>
                   <div><h3 className="font-bold">{title}</h3><p className="mt-1 text-sm leading-6 text-slate-300">{description}</p></div>
                 </div>
               ))}
@@ -76,6 +92,13 @@ const HomePage: React.FC = () => {
               Example: new record → approved acknowledgment → collect missing facts → routine reminder → exception to human → ready-state handoff → status record.
             </p>
             <p className="mt-3 text-xs font-bold uppercase tracking-wide text-light-teal">Fictional example. Human judgment remains with staff.</p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <button type="button" onClick={() => setDemoStep(0)} disabled={demoStep >= 0 && demoStep < steps.length} className="inline-flex items-center justify-center rounded-lg bg-electric-teal px-5 py-3 text-sm font-bold text-deep-navy transition hover:bg-light-teal disabled:cursor-wait disabled:opacity-60">
+                <Play className="mr-2 h-4 w-4" /> {demoStep >= 0 && demoStep < steps.length ? 'Running the workflow…' : demoStep === steps.length ? 'Run it again' : 'Run the sandbox'}
+              </button>
+              {demoStep >= 0 && <button type="button" onClick={() => setDemoStep(-1)} className="inline-flex items-center justify-center px-3 py-2 text-sm font-semibold text-slate-300 hover:text-white"><RotateCcw className="mr-2 h-4 w-4" /> Reset</button>}
+            </div>
+            {demoStep === steps.length && <p className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-700 bg-emerald-950/40 p-3 text-sm font-semibold text-emerald-200"><CheckCircle2 className="h-5 w-5" /> Test path complete. Ready for a human acceptance decision.</p>}
           </div>
         </div>
       </section>
@@ -105,7 +128,37 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section id="installation" className="py-16 md:py-24">
+      <section id="proof" className="scroll-mt-24 border-y border-slate-200 bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-cyan-700">Proof before promises</p>
+            <h2 className="mt-3 font-heading text-3xl font-bold text-deep-navy md:text-5xl">You should see how the work is controlled before you trust the claim.</h2>
+            <p className="mt-5 text-lg leading-8 text-dark-gray">ArioLabs is founding-stage. The proof today is a working test path, written pass/fail criteria, and a launch rule that keeps production off until the customer approves.</p>
+          </div>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {[
+              [Play, 'Run the logic', 'Use the sandbox above to see the trigger, routine actions, approved rules, human exception, and handoff move in order.'],
+              [FileCheck2, 'Approve the test first', 'The exact acceptance checklist is agreed before client-specific configuration begins.'],
+              [ShieldCheck, 'Keep production locked', 'The workflow stays in fictional or test mode until it passes and a person approves launch.'],
+            ].map(([Icon, title, copy]) => {
+              const ProofIcon = Icon as React.ElementType;
+              return <article key={title as string} className="rounded-2xl border border-slate-200 bg-soft-gray p-7"><ProofIcon className="h-8 w-8 text-cyan-700" /><h3 className="mt-5 font-heading text-2xl font-bold text-deep-navy">{title as string}</h3><p className="mt-3 leading-7 text-dark-gray">{copy as string}</p></article>;
+            })}
+          </div>
+          <div className="mt-8 grid gap-6 rounded-2xl bg-deep-navy p-7 text-white md:grid-cols-[.75fr_1.25fr] md:p-10">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-light-teal">Client stories</p>
+              <h3 className="mt-3 font-heading text-3xl font-bold">Earned, not fabricated.</h3>
+            </div>
+            <div>
+              <p className="text-lg leading-8 text-slate-300">There are no published One Workflow Autopilot client case studies yet. We will not invent a testimonial, borrow a logo, or present outreach activity as a customer result.</p>
+              <p className="mt-4 leading-7 text-slate-300">The first case study will show the original manual workflow, software used, acceptance checklist, human gates, test result, and customer-approved outcome—only with written permission.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="installation" className="scroll-mt-24 py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1fr_.85fr] lg:items-start">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-cyan-700">Founding installation</p>
