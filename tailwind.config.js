@@ -1,7 +1,9 @@
 module.exports = {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // Important: Make sure this line is present
+    "./**/*.{js,ts,jsx,tsx}",
+    "!./node_modules/**",
+    "!./dist/**",
   ],
   theme: {
     extend: {

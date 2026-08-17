@@ -1,32 +1,31 @@
-
 import React from 'react';
-import SectionWrapper from '../components/SectionWrapper';
+import { Check, ShieldCheck } from 'lucide-react';
 
-const AboutPage: React.FC = () => {
-    return (
-        <div className="bg-white">
-            <header className="bg-deep-navy text-white pt-24 pb-16">
-                 <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8 text-center">
-                     <h1 className="text-4xl md:text-5xl font-bold font-heading">About ArioLabs</h1>
-                     <p className="text-lg md:text-xl text-gray-300 mt-4">We empower small businesses with the power of AI automation.</p>
-                 </div>
-            </header>
-            <SectionWrapper className="py-16 md:py-24">
-                <div className="max-w-3xl mx-auto text-lg leading-relaxed space-y-6">
-                    <h2 className="text-3xl font-bold font-heading text-deep-navy">Our Mission</h2>
-                    <p>
-                        At ArioLabs, we believe that the power of artificial intelligence and automation shouldn't be reserved for large corporations. Our mission is to democratize this technology, making it accessible, affordable, and easy to implement for small and medium-sized businesses in the United States and the Philippines.
-                    </p>
-                    <p>
-                        We were founded on the principle that business owners should spend their time on what they do best—growing their business and serving their clients—not on repetitive, manual tasks. By building custom-tailored automation solutions, we help our clients reclaim their most valuable asset: their time.
-                    </p>
-                    <p>
-                        Our team of experts is passionate about problem-solving and dedicated to delivering tangible results quickly. We don't just build workflows; we build efficiency engines that power growth and reduce stress.
-                    </p>
-                </div>
-            </SectionWrapper>
-        </div>
-    );
-};
+const AboutPage: React.FC = () => (
+  <div className="bg-white">
+    <header className="bg-deep-navy px-5 py-20 text-white md:px-8 md:py-24">
+      <div className="mx-auto max-w-4xl">
+        <p className="text-sm font-bold uppercase tracking-[0.18em] text-light-teal">How ArioLabs works</p>
+        <h1 className="mt-4 font-heading text-4xl font-bold md:text-6xl">Specific scope. Visible controls. No AI theater.</h1>
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">ArioLabs installs one bounded workflow across software a customer already uses. We prove the logic safely, define what a person must decide, and test against an agreed checklist before launch.</p>
+      </div>
+    </header>
+    <main className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-24">
+      <div className="grid gap-6 md:grid-cols-2">
+        {[
+          ['Keep the current stack', 'We first check whether the customer’s existing software already solves the workflow.'],
+          ['Prove before production', 'Client-specific logic is tested away from live operations before approval.'],
+          ['Keep judgment human', 'Sensitive, unusual, or consequential decisions stop at a human exception gate.'],
+          ['Be explicit about limits', 'No invented outcomes, hidden integrations, vague transformation promises, or forced retainer.'],
+        ].map(([title, copy]) => <article key={title} className="rounded-xl border border-slate-200 p-7"><ShieldCheck className="h-7 w-7 text-cyan-700" /><h2 className="mt-4 font-heading text-2xl font-bold text-deep-navy">{title}</h2><p className="mt-3 leading-7">{copy}</p></article>)}
+      </div>
+      <section className="mt-14 rounded-2xl bg-soft-gray p-7 md:p-10">
+        <h2 className="font-heading text-3xl font-bold text-deep-navy">The acceptance-first sequence</h2>
+        <ol className="mt-6 space-y-4">{['Check the existing software', 'Show the fictional sandbox', 'Map one exact workflow', 'Approve the acceptance checklist', 'Configure and test', 'Launch only after it passes'].map((item, index) => <li key={item} className="flex gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-deep-navy text-sm font-bold text-white">{index + 1}</span><span className="pt-0.5 font-semibold">{item}</span></li>)}</ol>
+        <p className="mt-7 flex gap-3 text-sm leading-6 text-dark-gray"><Check className="h-5 w-5 shrink-0 text-success-green" />If the current software already solves it better, ArioLabs will say so.</p>
+      </section>
+    </main>
+  </div>
+);
 
 export default AboutPage;
