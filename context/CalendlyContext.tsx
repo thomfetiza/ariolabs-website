@@ -1,6 +1,6 @@
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { PopupWidget } from 'react-calendly';
+import { PopupModal } from 'react-calendly';
 
 interface CalendlyContextType {
   openModal: () => void;
@@ -19,13 +19,12 @@ export const CalendlyProvider: React.FC<{ children: ReactNode }> = ({ children }
     <CalendlyContext.Provider value={{ openModal }}>
       {children}
       {typeof window !== 'undefined' && document.getElementById('root') && (
-        <PopupWidget
+        <PopupModal
           url="https://calendly.com/ariolabs/ai-consultation-ph"
           onModalClose={() => setIsOpen(false)}
           open={isOpen}
           rootElement={document.getElementById('root')!}
-          textColor="#ffffff"
-          color="#06B6D4"
+          pageSettings={{ textColor: 'ffffff', primaryColor: '06B6D4' }}
         />
       )}
     </CalendlyContext.Provider>
