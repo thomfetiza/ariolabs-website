@@ -4,6 +4,10 @@ import Layout from './components/Layout';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
+const CaseStudiesPage = lazy(() => import('./pages/CaseStudiesPage'));
+const MediaCompanyPage = lazy(() => import('./pages/case-studies/MediaCompanyPage'));
+const FinanceAuditTeamPage = lazy(() => import('./pages/case-studies/FinanceAuditTeamPage'));
+const ProspectingWorkflowPage = lazy(() => import('./pages/case-studies/ProspectingWorkflowPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsOfServicePage = lazy(() => import('./pages/TermsOfServicePage'));
 
@@ -17,6 +21,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/case-studies/media-company" element={<MediaCompanyPage />} />
+            <Route path="/case-studies/finance-audit-team" element={<FinanceAuditTeamPage />} />
+            <Route path="/case-studies/prospecting-workflow" element={<ProspectingWorkflowPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="*" element={<Navigate to="/" replace />} />

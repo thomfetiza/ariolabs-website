@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const contactHref = 'mailto:info@ariolabs.tech?subject=One%20Workflow%20Autopilot%20fit%20check';
-  const sectionLinks = [['sandbox-demo', 'Sandbox'], ['proof', 'Proof'], ['installation', 'Installation']];
+  const sectionLinks = [['sandbox-demo', 'Sandbox'], ['work', 'Work'], ['installation', 'Installation']];
 
   const goToSection = (sectionId: string) => {
     setOpen(false);

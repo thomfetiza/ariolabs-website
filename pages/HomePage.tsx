@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Check, CheckCircle2, FileCheck2, Play, RotateCcw, ShieldCheck, UserCheck, X } from 'lucide-react';
 
 const steps = [
@@ -128,31 +128,31 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section id="proof" className="scroll-mt-24 border-y border-slate-200 bg-white py-16 md:py-24">
+      <section id="work" className="scroll-mt-24 border-y border-slate-200 bg-white py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-cyan-700">Proof before promises</p>
-            <h2 className="mt-3 font-heading text-3xl font-bold text-deep-navy md:text-5xl">You should see how the work is controlled before you trust the claim.</h2>
-            <p className="mt-5 text-lg leading-8 text-dark-gray">ArioLabs is founding-stage. The proof today is a working test path, written pass/fail criteria, and a launch rule that keeps production off until the customer approves.</p>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-cyan-700">Selected work</p>
+            <h2 className="mt-3 font-heading text-3xl font-bold text-deep-navy md:text-5xl">Real workflow builds. Client names kept private.</h2>
+            <p className="mt-5 text-lg leading-8 text-dark-gray">These anonymized summaries come from earlier ArioLabs projects. They show relevant delivery experience, but they are not presented as results from the new One Workflow Autopilot package.</p>
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {[
-              [Play, 'Run the logic', 'Use the sandbox above to see the trigger, routine actions, approved rules, human exception, and handoff move in order.'],
-              [FileCheck2, 'Approve the test first', 'The exact acceptance checklist is agreed before client-specific configuration begins.'],
-              [ShieldCheck, 'Keep production locked', 'The workflow stays in fictional or test mode until it passes and a person approves launch.'],
-            ].map(([Icon, title, copy]) => {
+              [FileCheck2, '55-location audit workflow', 'Standardized submissions, live currency conversion, automated aggregation, and anomaly flags for human review.', '/case-studies/finance-audit-team'],
+              [Play, 'Multi-platform media workflow', 'Connected content planning, publishing, and reporting across the team’s existing social channels.', '/case-studies/media-company'],
+              [UserCheck, 'AI-assisted prospecting workflow', 'Combined lead prioritization, outreach, scheduling, CRM updates, and human follow-up.', '/case-studies/prospecting-workflow'],
+            ].map(([Icon, title, copy, href]) => {
               const ProofIcon = Icon as React.ElementType;
-              return <article key={title as string} className="rounded-2xl border border-slate-200 bg-soft-gray p-7"><ProofIcon className="h-8 w-8 text-cyan-700" /><h3 className="mt-5 font-heading text-2xl font-bold text-deep-navy">{title as string}</h3><p className="mt-3 leading-7 text-dark-gray">{copy as string}</p></article>;
+              return <article key={title as string} className="flex flex-col rounded-2xl border border-slate-200 bg-soft-gray p-7"><ProofIcon className="h-8 w-8 text-cyan-700" /><h3 className="mt-5 font-heading text-2xl font-bold text-deep-navy">{title as string}</h3><p className="mt-3 flex-1 leading-7 text-dark-gray">{copy as string}</p><Link to={href as string} className="mt-6 font-bold text-cyan-700 hover:underline">Read the anonymized study →</Link></article>;
             })}
           </div>
-          <div className="mt-8 grid gap-6 rounded-2xl bg-deep-navy p-7 text-white md:grid-cols-[.75fr_1.25fr] md:p-10">
+          <div id="proof" className="mt-8 grid scroll-mt-24 gap-6 rounded-2xl bg-deep-navy p-7 text-white md:grid-cols-[.75fr_1.25fr] md:p-10">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-light-teal">Client stories</p>
-              <h3 className="mt-3 font-heading text-3xl font-bold">Earned, not fabricated.</h3>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-light-teal">Proof before promises</p>
+              <h3 className="mt-3 font-heading text-3xl font-bold">See the controls too.</h3>
             </div>
             <div>
-              <p className="text-lg leading-8 text-slate-300">There are no published One Workflow Autopilot client case studies yet. We will not invent a testimonial, borrow a logo, or present outreach activity as a customer result.</p>
-              <p className="mt-4 leading-7 text-slate-300">The first case study will show the original manual workflow, software used, acceptance checklist, human gates, test result, and customer-approved outcome—only with written permission.</p>
+              <p className="text-lg leading-8 text-slate-300">The sandbox above shows the trigger, routine actions, approved rules, human exception, and handoff moving in order.</p>
+              <p className="mt-4 leading-7 text-slate-300">For the current offer, the client-specific workflow remains in test mode until the written acceptance checklist passes and a person approves production launch.</p>
             </div>
           </div>
         </div>
