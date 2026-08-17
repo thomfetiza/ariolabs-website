@@ -1,1 +1,0 @@
-import{j as t,m as a}from"./index-BW0rq5UM.js";const r=({children:i,className:e,id:o})=>t.jsx(a.section,{id:o,className:e,initial:{opacity:0,y:50},whileInView:{opacity:1,y:0},viewport:{once:!0,amount:.2},transition:{duration:.6,ease:"easeOut"},children:t.jsx("div",{className:"container mx-auto max-w-7xl px-4 md:px-6 lg:px-8",children:i})});export{r as S};

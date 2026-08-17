@@ -7,7 +7,7 @@ const TermsOfServicePage: React.FC = () => {
             <header className="bg-soft-gray pt-24 pb-16">
                 <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8 text-center">
                     <h1 className="text-4xl md:text-5xl font-bold font-heading text-deep-navy">Terms of Service</h1>
-                    <p className="text-lg text-dark-gray mt-4">Last Updated: October 27, 2025</p>
+                    <p className="text-lg text-dark-gray mt-4">Last Updated: August 18, 2026</p>
                 </div>
             </header>
             <main className="py-16 md:py-24">
@@ -19,12 +19,12 @@ const TermsOfServicePage: React.FC = () => {
 
                     <section className="space-y-4">
                         <h2 className="text-3xl font-bold font-heading text-deep-navy">2. Services Description</h2>
-                        <p>ArioLabs provides AI automation consulting and implementation services ("Services"). Our services include project-based work and retainer agreements designed to help businesses automate their processes. All services are detailed in a separate Statement of Work (SOW) or client agreement.</p>
+                        <p>ArioLabs maps, configures, tests, and supports bounded workflow implementations across supported customer software ("Services"). The exact workflow, integrations, acceptance checklist, human-decision boundaries, costs, and launch conditions are defined in a separate scope or client agreement.</p>
                     </section>
 
                     <section className="space-y-4">
                         <h2 className="text-3xl font-bold font-heading text-deep-navy">3. Payment Terms</h2>
-                        <p>Fees for our Services are due as specified in the client agreement or invoice. Typically, payment is required before project work begins. We may offer specific guarantees on our services, which will be explicitly stated in the SOW. Refund policies, if any, will be governed by the terms of the individual client agreement.</p>
+                        <p>Fees are due as specified in the client agreement or invoice. Any refund condition, third-party cost, or production-launch requirement applies only when it is written into the agreed scope.</p>
                     </section>
                     
                     <section className="space-y-4">
