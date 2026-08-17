@@ -4,9 +4,9 @@ import CaseStudyLayout from '../../components/CaseStudyLayout';
 
 const MediaCompanyPage: React.FC = () => {
     const caseStudyData = {
-        title: "Social Media Automation Workflow",
+        title: "Multi-Platform Media Workflow",
         industry: "Digital Media & Marketing",
-        problem: "The client's team had limited manpower, struggled to generate fresh content ideas, and was manually posting content across multiple social media platforms, leading to inconsistency and inefficiency.",
+        problem: "A media team with limited capacity planned and posted content manually across several platforms. The process made consistent publishing and reporting difficult.",
         approach: (
             <div className="space-y-4">
                  <p>ArioLabs built an end-to-end AI-driven social media system. The workflow was designed to cover every stage of the content lifecycle:</p>
@@ -20,11 +20,10 @@ const MediaCompanyPage: React.FC = () => {
         ),
         solution: "We deployed a comprehensive automation solution using custom scripts and AI-assisted planners. This new system handled all content planning, posting, and reporting processes, allowing the team to focus on strategy and creativity without relying on paid ads.",
         results: [
-            "250% increase in engagement",
-            "100% organic reach & views",
-            "Dramatic boost in creative output"
+            "The earlier project summary reported 250% engagement growth over two months",
+            "Planning, publishing, and reporting moved into one connected workflow",
+            "The team retained control of strategy and creative decisions"
         ],
-        quote: "We have met and exceeded our 2024 targets — it’s been a great success.",
         tools: ["Custom Scripts", "AI Content Planners", "YouTube API", "Facebook API", "Instagram API", "TikTok API", "X (Twitter) API"]
     };
 

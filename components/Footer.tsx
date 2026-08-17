@@ -12,6 +12,7 @@ const Footer: React.FC = () => {
           <a href="mailto:info@ariolabs.tech" className="mt-3 inline-block text-sm font-semibold text-light-teal hover:underline">info@ariolabs.tech</a>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-300">
+          <Link to="/case-studies" className="hover:text-white">Selected work</Link>
           <Link to="/about" className="hover:text-white">How we work</Link>
           <Link to="/privacy-policy" className="hover:text-white">Privacy</Link>
           <Link to="/terms-of-service" className="hover:text-white">Terms</Link>

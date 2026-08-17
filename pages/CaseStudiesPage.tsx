@@ -1,96 +1,60 @@
-
 import React from 'react';
-import SectionWrapper from '../components/SectionWrapper';
+import { ArrowRight, FileCheck2, Megaphone, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-interface CaseStudy {
-    title: string;
-    client: string;
-    description: string;
-    result: string;
-    industry: string;
-    status?: 'In Progress';
-    slug: string;
-}
-
-const caseStudies: CaseStudy[] = [
-    {
-        title: "Social Media Automation Workflow",
-        client: "Media Company",
-        description: "Built an automated social media workflow and marketing calendar system, using custom integrations with the client's existing social platforms.",
-        result: "250% increase in engagement in 2 months.",
-        industry: "Media & Marketing",
-        slug: "media-company",
-    },
-    {
-        title: "Automated Compliance & Audit System",
-        client: "Finance/Audit Team",
-        description: "Deployed a Google Apps Script system with a front-end form for automated decision-making, compliance checks, and reporting.",
-        result: "Eliminated manual data entry and enabled real-time audit tracking, leading to 150% faster compliance in 3 weeks.",
-        industry: "Finance & Compliance",
-        slug: "finance-audit-team",
-    },
-    {
-        title: "AI-Powered Client Prospecting System",
-        client: "BOSS (Business Outsourcing Specialty Services)",
-        description: "Developed and implemented a bespoke, AI-powered client prospecting system to identify and engage high-quality leads automatically.",
-        result: "Closed 2 new high-value clients within the first 2 weeks of deployment.",
-        industry: "Business Services",
-        slug: "boss",
-    },
-    {
-        title: "Cost Reduction Mobile Application",
-        client: "Livestream Platform",
-        description: "Currently developing a custom application to reduce streaming costs and a companion mobile app for organization members.",
-        result: "Targeting savings of up to $150,000 USD per year upon completion.",
-        industry: "Tech & Entertainment",
-        status: "In Progress",
-        slug: "livestream-platform",
-    },
+const caseStudies = [
+  {
+    title: '55-location audit workflow',
+    industry: 'Finance & compliance',
+    description: 'Standardized reports from 55 locations, automated currency conversion and aggregation, and flagged anomalies for human review.',
+    outcome: 'A centralized, traceable workflow replaced fragmented manual submissions.',
+    slug: 'finance-audit-team',
+    icon: FileCheck2,
+  },
+  {
+    title: 'Multi-platform media workflow',
+    industry: 'Media & marketing',
+    description: 'Connected content planning, publishing, and performance reporting across the team’s existing social platforms.',
+    outcome: 'The earlier project summary reported 250% engagement growth over two months.',
+    slug: 'media-company',
+    icon: Megaphone,
+  },
+  {
+    title: 'AI-assisted prospecting workflow',
+    industry: 'Business services',
+    description: 'Combined lead prioritization, outreach, scheduling, CRM updates, and human follow-up in one bounded sales workflow.',
+    outcome: 'The earlier project summary reported two B2B clients closed within two weeks of deployment.',
+    slug: 'prospecting-workflow',
+    icon: Users,
+  },
 ];
 
-const CaseStudyCard: React.FC<{ study: CaseStudy }> = ({ study }) => (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col">
-        <div className="p-6">
-            <div className="flex justify-between items-start mb-4">
-                <span className="inline-block bg-electric-teal/10 text-electric-teal text-xs font-semibold px-3 py-1 rounded-full">{study.industry}</span>
-                 {study.status && <span className="inline-block bg-warning-orange/10 text-warning-orange text-xs font-bold px-3 py-1 rounded-full">{study.status}</span>}
-            </div>
-            <h3 className="text-2xl font-bold font-heading text-deep-navy mb-2">{study.title}</h3>
-            <p className="text-sm text-dark-gray/80 mb-4"><strong>Client:</strong> {study.client}</p>
-            <p className="text-base text-dark-gray mb-4 flex-grow">{study.description}</p>
-            <div>
-                <p className="font-semibold text-deep-navy">Result:</p>
-                <p className="text-success-green font-bold text-lg">{study.result}</p>
-            </div>
-        </div>
-        <div className="mt-auto p-6 bg-soft-gray">
-             <Link to={`/case-studies/${study.slug}`} className="font-bold text-electric-teal hover:underline">
-                View Full Study &rarr;
-            </Link>
-        </div>
-    </div>
+const CaseStudiesPage: React.FC = () => (
+  <div className="bg-soft-gray">
+    <header className="bg-deep-navy px-5 pb-16 pt-20 text-white md:px-8 md:pb-20 md:pt-24">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-light-teal">Selected work</p>
+        <h1 className="mt-4 font-heading text-4xl font-bold md:text-6xl">Workflow builds, without borrowed logos.</h1>
+        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">These summaries come from earlier ArioLabs project records. Client identities are withheld. They demonstrate relevant delivery experience, not outcomes from the new One Workflow Autopilot package.</p>
+      </div>
+    </header>
+
+    <main className="mx-auto grid max-w-7xl gap-6 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-3">
+      {caseStudies.map(({ title, industry, description, outcome, slug, icon: Icon }) => (
+        <article key={slug} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+          <Icon className="h-9 w-9 text-cyan-700" />
+          <p className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-cyan-700">{industry}</p>
+          <h2 className="mt-3 font-heading text-2xl font-bold text-deep-navy">{title}</h2>
+          <p className="mt-4 leading-7 text-dark-gray">{description}</p>
+          <div className="mt-6 border-t border-slate-200 pt-5">
+            <p className="text-sm font-bold uppercase tracking-wide text-deep-navy">Recorded outcome</p>
+            <p className="mt-2 leading-7 text-dark-gray">{outcome}</p>
+          </div>
+          <Link to={`/case-studies/${slug}`} className="mt-7 inline-flex items-center font-bold text-cyan-700 hover:underline">Read the study <ArrowRight className="ml-2 h-4 w-4" /></Link>
+        </article>
+      ))}
+    </main>
+  </div>
 );
-
-
-const CaseStudiesPage: React.FC = () => {
-    return (
-        <div className="bg-soft-gray">
-            <header className="bg-deep-navy text-white pt-24 pb-16">
-                 <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8 text-center">
-                     <h1 className="text-4xl md:text-5xl font-bold font-heading">Our Success Stories</h1>
-                     <p className="text-lg md:text-xl text-gray-300 mt-4">See how we've helped businesses like yours save time and scale faster.</p>
-                 </div>
-            </header>
-            <SectionWrapper className="py-16 md:py-24">
-                <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                    {caseStudies.map(study => (
-                        <CaseStudyCard key={study.title} study={study} />
-                    ))}
-                </div>
-            </SectionWrapper>
-        </div>
-    );
-};
 
 export default CaseStudiesPage;

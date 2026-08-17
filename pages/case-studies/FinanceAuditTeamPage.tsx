@@ -4,9 +4,9 @@ import CaseStudyLayout from '../../components/CaseStudyLayout';
 
 const FinanceAuditTeamPage: React.FC = () => {
     const caseStudyData = {
-        title: "Automated Compliance & Audit System",
+        title: "55-Location Audit Workflow",
         industry: "Accounting & Compliance",
-        problem: "An internal accounting audit department was receiving multiple weekly and batch financial reports from 55 different locations manually. There was no standardized format, no central repository, and the process was prone to errors and delays.",
+        problem: "An accounting audit team received weekly and batch financial reports from 55 locations through a fragmented manual process. Formats varied, consolidation was slow, and exceptions were difficult to trace.",
         approach: (
              <div className="space-y-4">
                 <p>ArioLabs designed and implemented a centralized data collection and processing system. Our approach included:</p>
@@ -20,11 +20,11 @@ const FinanceAuditTeamPage: React.FC = () => {
         ),
         solution: "The new system automatically validated incoming data, performed currency conversions in real-time, and generated standardized reports. We also integrated an AI analysis layer for accuracy control, flagging potential anomalies for human review. This completely replaced the manual submission and consolidation process.",
         results: [
-            "150% faster compliance workflow",
-            "55 locations automated",
-            "Zero manual data entry"
+            "55 locations moved into one standardized submission path",
+            "Currency conversion and report aggregation ran automatically",
+            "Potential anomalies were routed to people for review"
         ],
-        highlight: "High accuracy and real-time data assured reliable financial tracking for sensitive audit reports.",
+        highlight: "The workflow automated repeatable processing while keeping sensitive audit judgment with the team.",
         tools: ["Google Apps Script", "Google Forms", "Google Sheets", "Currency Conversion API", "AI Data Analysis"]
     };
 

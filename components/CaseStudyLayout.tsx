@@ -19,7 +19,7 @@ interface CaseStudyLayoutProps {
 const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ title, industry, problem, approach, solution, results, highlight, quote, tools }) => {
     
     useEffect(() => {
-        document.title = `Case Study – ${title} | ArioLabs AI Automation`;
+        document.title = `Selected Work – ${title} | ArioLabs`;
         window.scrollTo(0, 0);
     }, [title]);
 
@@ -29,6 +29,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ title, industry, prob
                 <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8 text-center">
                     <span className="text-sm font-bold uppercase text-electric-teal tracking-widest mb-4 inline-block">{industry}</span>
                     <h1 className="text-4xl md:text-5xl font-bold font-heading">{title}</h1>
+                    <p className="mt-5 text-slate-300">Anonymized project summary. Client identity withheld.</p>
                 </div>
             </header>
 
@@ -67,12 +68,11 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ title, industry, prob
 
             <SectionWrapper className="py-16 md:py-24 bg-gradient-to-br from-deep-navy to-[#1E293B] text-white" id="results">
                  <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-4xl font-bold font-heading text-white mb-8">Results</h2>
+                    <h2 className="text-4xl font-bold font-heading text-white mb-8">Outcome</h2>
                     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {results.map((result, index) => (
                             <div key={index} className="bg-white/10 p-6 rounded-lg">
-                                <p className="text-4xl font-bold text-electric-teal mb-2">{result.split(' ')[0]}</p>
-                                <p className="text-lg text-gray-200">{result.substring(result.indexOf(' ') + 1)}</p>
+                                <p className="text-lg font-semibold leading-7 text-gray-100">{result}</p>
                             </div>
                         ))}
                     </div>
