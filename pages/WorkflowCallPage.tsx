@@ -6,12 +6,14 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { z } from 'zod';
 import { CALENDLY_URL, WORKFLOW_CALL_PURPOSE } from '../config/calendly';
+import { INQUIRY_ENDPOINT } from '../config/inquiry';
 
 const inquirySchema = z.object({
   manualWork: z.string().trim().min(5, 'Tell us the manual task in a few words.'),
   software: z.string().trim().min(2, 'Tell us which software your team uses.'),
   name: z.string().trim().min(2, 'Please enter your name.'),
   email: z.string().trim().email('Please enter a valid email address.'),
+  companyWebsite: z.string().optional(),
 });
 
 type InquiryInputs = z.infer<typeof inquirySchema>;
@@ -22,8 +24,9 @@ const fieldClass = 'mt-2 block w-full rounded-lg border border-slate-300 bg-whit
 const WorkflowCallPage: React.FC<WorkflowCallPageProps> = ({ mode }) => {
   const [inquiry, setInquiry] = useState<InquiryInputs | null>(null);
   const [scheduled, setScheduled] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
   const schedulerRef = useRef<HTMLDivElement>(null);
-  const { register, handleSubmit, formState: { errors } } = useForm<InquiryInputs>({ resolver: zodResolver(inquirySchema) });
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<InquiryInputs>({ resolver: zodResolver(inquirySchema) });
 
   useCalendlyEventListener({ onEventScheduled: () => setScheduled(true) });
 
@@ -32,6 +35,22 @@ const WorkflowCallPage: React.FC<WorkflowCallPageProps> = ({ mode }) => {
   }, [inquiry]);
 
   const showScheduler = mode === 'book' || inquiry !== null;
+
+  const submitInquiry = async (data: InquiryInputs) => {
+    setSubmissionError(null);
+    try {
+      const response = await fetch(INQUIRY_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'website_inquiry', ...data }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || 'Inquiry could not be saved.');
+      setInquiry(data);
+    } catch (error) {
+      setSubmissionError(error instanceof Error ? error.message : 'Inquiry could not be saved. Please try again.');
+    }
+  };
 
   return (
     <div className="bg-soft-gray">
@@ -46,7 +65,7 @@ const WorkflowCallPage: React.FC<WorkflowCallPageProps> = ({ mode }) => {
       <main className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         {!showScheduler && (
           <div className="grid gap-8 lg:grid-cols-[1fr_.65fr] lg:items-start">
-            <form onSubmit={handleSubmit(setInquiry)} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-9">
+            <form onSubmit={handleSubmit(submitInquiry)} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-9">
               <h2 className="font-heading text-3xl font-bold text-deep-navy">Four quick details</h2>
               <p className="mt-3 leading-7 text-dark-gray">No long brief. A rough answer is enough to start.</p>
               <div className="mt-8 space-y-6">
@@ -72,9 +91,14 @@ const WorkflowCallPage: React.FC<WorkflowCallPageProps> = ({ mode }) => {
                     {errors.email && <p className="mt-2 text-sm text-red-700">{errors.email.message}</p>}
                   </div>
                 </div>
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="companyWebsite">Company website</label>
+                  <input id="companyWebsite" tabIndex={-1} autoComplete="off" {...register('companyWebsite')} />
+                </div>
               </div>
-              <button type="submit" className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-electric-teal px-7 py-4 font-bold text-deep-navy transition hover:bg-light-teal">Continue to Booking <ArrowRight className="ml-2 h-5 w-5" /></button>
-              <p className="mt-4 text-center text-xs leading-5 text-slate-500">Your details are used to prepare the booking. Nothing is sent publicly.</p>
+              {submissionError && <p role="alert" className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800">{submissionError} Your answers are still here—retry, or use <a href="mailto:info@ariolabs.tech" className="font-bold underline">info@ariolabs.tech</a>.</p>}
+              <button type="submit" disabled={isSubmitting} className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-electric-teal px-7 py-4 font-bold text-deep-navy transition hover:bg-light-teal disabled:cursor-wait disabled:opacity-60">{isSubmitting ? 'Saving…' : 'Send & Continue'} {!isSubmitting && <ArrowRight className="ml-2 h-5 w-5" />}</button>
+              <p className="mt-4 text-center text-xs leading-5 text-slate-500">We save these four details so your inquiry is not lost. Booking the call afterward is optional.</p>
             </form>
 
             <aside className="rounded-2xl bg-deep-navy p-7 text-white md:p-9">
@@ -91,8 +115,8 @@ const WorkflowCallPage: React.FC<WorkflowCallPageProps> = ({ mode }) => {
           <section ref={schedulerRef} className="scroll-mt-24">
             {inquiry && (
               <div className="mx-auto mb-7 max-w-4xl rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
-                <p className="flex items-center gap-2 font-bold"><CheckCircle2 className="h-5 w-5" />Got it, {inquiry.name}. Choose a time below.</p>
-                <p className="mt-2 text-sm leading-6">Your name, email, manual task, and current software will be carried into the booking form.</p>
+                <p className="flex items-center gap-2 font-bold"><CheckCircle2 className="h-5 w-5" />Your inquiry is saved, {inquiry.name}.</p>
+                <p className="mt-2 text-sm leading-6">Booking is optional. If you want to talk now, choose a time below; your four details will be carried into the booking form.</p>
               </div>
             )}
             {scheduled ? (
