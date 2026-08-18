@@ -8,12 +8,12 @@ const Footer: React.FC = () => {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-10 md:flex-row md:items-end md:justify-between md:px-8">
         <div>
           <BrandLogo />
-          <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">One supported workflow. Your existing software. Customer-approved rules and a human exception gate.</p>
+          <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">We fix one repetitive admin workflow using the software your team already has.</p>
           <a href="mailto:info@ariolabs.tech" className="mt-3 inline-block text-sm font-semibold text-light-teal hover:underline">info@ariolabs.tech</a>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-300">
           <Link to="/case-studies" className="hover:text-white">Selected work</Link>
-          <Link to="/about" className="hover:text-white">How we work</Link>
+          <Link to="/about" className="hover:text-white">How it works</Link>
           <Link to="/privacy-policy" className="hover:text-white">Privacy</Link>
           <Link to="/terms-of-service" className="hover:text-white">Terms</Link>
         </div>
