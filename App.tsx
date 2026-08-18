@@ -10,6 +10,7 @@ const FinanceAuditTeamPage = lazy(() => import('./pages/case-studies/FinanceAudi
 const ProspectingWorkflowPage = lazy(() => import('./pages/case-studies/ProspectingWorkflowPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsOfServicePage = lazy(() => import('./pages/TermsOfServicePage'));
+const WorkflowCallPage = lazy(() => import('./pages/WorkflowCallPage'));
 
 const LoadingSpinner = () => <div className="flex min-h-screen items-center justify-center">Loading…</div>;
 
@@ -27,6 +28,9 @@ export default function App() {
             <Route path="/case-studies/prospecting-workflow" element={<ProspectingWorkflowPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+            <Route path="/start" element={<WorkflowCallPage mode="inquiry" />} />
+            <Route path="/book" element={<WorkflowCallPage mode="book" />} />
+            <Route path="/schedule" element={<Navigate to="/book" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>

@@ -30,8 +30,6 @@ const boundaries = [
 const HomePage: React.FC = () => {
   const location = useLocation();
   const [demoStep, setDemoStep] = useState(-1);
-  const contactHref = 'mailto:info@ariolabs.tech?subject=The%20admin%20work%20our%20team%20still%20chases&body=The%20thing%20we%20still%20do%20manually%20is%3A%0A%0AThe%20software%20we%20already%20use%20is%3A';
-
   const scrollTo = (sectionId: string) => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   useEffect(() => {
@@ -62,10 +60,10 @@ const HomePage: React.FC = () => {
               Show us the inquiry, follow-up, reminder, handoff, or status update your team keeps doing manually. We will see if it can run automatically using the software you already have.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href={contactHref} className="inline-flex items-center justify-center rounded-lg bg-electric-teal px-7 py-4 font-bold text-deep-navy transition hover:bg-light-teal">
+              <Link to="/start" className="inline-flex items-center justify-center rounded-lg bg-electric-teal px-7 py-4 font-bold text-deep-navy transition hover:bg-light-teal">
                 Show Us What Is Still Manual <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-              <button type="button" onClick={() => scrollTo('sandbox-demo')} className="inline-flex items-center justify-center rounded-lg border border-slate-500 px-7 py-4 font-bold text-white transition hover:border-white hover:bg-white/10">See a Realistic Example</button>
+              </Link>
+              <Link to="/book" className="inline-flex items-center justify-center rounded-lg border border-slate-500 px-7 py-4 font-bold text-white transition hover:border-white hover:bg-white/10">Book a 20-Minute Workflow Call</Link>
             </div>
             <p className="mt-6 text-sm font-semibold text-slate-300">Keep your current software. Start with one problem. Test before launch.</p>
           </div>
@@ -206,7 +204,10 @@ const HomePage: React.FC = () => {
         <div className="mx-auto max-w-4xl px-5 text-center md:px-8">
           <h2 className="font-heading text-3xl font-bold md:text-5xl">What is the one thing your office keeps chasing?</h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">Send us the manual task and the software you already use. We will tell you whether there is a sensible fix, even if the answer is to use a feature you already have.</p>
-          <a href={contactHref} className="mt-8 inline-flex items-center justify-center rounded-lg bg-electric-teal px-8 py-4 font-bold text-deep-navy transition hover:bg-light-teal">Show Us What Is Still Manual <ArrowRight className="ml-2 h-5 w-5" /></a>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link to="/start" className="inline-flex items-center justify-center rounded-lg bg-electric-teal px-8 py-4 font-bold text-deep-navy transition hover:bg-light-teal">Show Us What Is Still Manual <ArrowRight className="ml-2 h-5 w-5" /></Link>
+            <Link to="/book" className="inline-flex items-center justify-center rounded-lg border border-slate-500 px-8 py-4 font-bold text-white transition hover:border-white hover:bg-white/10">Book a 20-Minute Workflow Call</Link>
+          </div>
         </div>
       </section>
     </div>

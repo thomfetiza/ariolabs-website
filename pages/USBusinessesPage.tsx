@@ -34,8 +34,8 @@ const USBusinessesPage: React.FC = () => {
                 <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8 text-center">
                     <h1 className="text-4xl md:text-5xl font-bold font-heading leading-tight mb-4">Stop Losing Leads in Your Inbox. Automate What's Killing Your Focus.</h1>
                     <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">We help U.S. coaches, consultants, and service-based businesses save 10+ hours/week by automating client onboarding, scheduling, and follow-ups.</p>
-                    <Link to="/schedule" className="bg-electric-teal text-white font-bold py-4 px-8 rounded-lg hover:bg-light-teal hover:text-deep-navy transition-all duration-300 transform hover:scale-105">
-                        Book Free Strategy Session
+                    <Link to="/book" className="bg-electric-teal text-white font-bold py-4 px-8 rounded-lg hover:bg-light-teal hover:text-deep-navy transition-all duration-300 transform hover:scale-105">
+                        Book a 20-Minute Workflow Call
                     </Link>
                 </div>
             </section>
