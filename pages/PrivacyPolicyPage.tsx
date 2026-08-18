@@ -14,11 +14,12 @@ const PrivacyPolicyPage: React.FC = () => {
                 <div className="container mx-auto max-w-4xl px-4 md:px-6 lg:px-8 space-y-8 text-lg text-dark-gray/90 leading-relaxed">
                     <section className="space-y-4">
                         <h2 className="text-3xl font-bold font-heading text-deep-navy">1. Information We Collect</h2>
-                        <p>We collect information that you voluntarily provide through email or other direct communication. This may include:</p>
+                        <p>We collect information that you voluntarily provide through our website inquiry form, email, scheduling page, or other direct communication. This may include:</p>
                         <ul className="list-disc list-inside pl-4 space-y-2">
                             <li>Your name</li>
                             <li>Your email address</li>
-                            <li>Information about your business (e.g., business type)</li>
+                            <li>The manual work you want help with</li>
+                            <li>The software your team already uses</li>
                             <li>Any other information you choose to provide in your message</li>
                         </ul>
                     </section>

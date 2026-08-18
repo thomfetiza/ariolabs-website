@@ -7,8 +7,7 @@
     <script>
       (function () {
         var route = location.pathname + location.search + location.hash;
-        sessionStorage.setItem('ariolabs-route', route);
-        location.replace('/');
+        location.replace('/#' + route);
       }());
     </script>
   </head>
