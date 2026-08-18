@@ -7,7 +7,6 @@ const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const contactHref = 'mailto:info@ariolabs.tech?subject=The%20admin%20work%20our%20team%20still%20chases';
   const sectionLinks = [['sandbox-demo', 'Example'], ['work', 'Work'], ['installation', 'Price']];
 
   const goToSection = (sectionId: string) => {
@@ -30,7 +29,8 @@ const Header: React.FC = () => {
         <nav className="hidden items-center gap-7 md:flex">
           {sectionLinks.map(([id, label]) => <button key={id} type="button" onClick={() => goToSection(id)} className="text-sm font-semibold text-slate-200 hover:text-light-teal">{label}</button>)}
           <Link to="/about" className="text-sm font-semibold text-slate-200 hover:text-light-teal">How it works</Link>
-          <a href={contactHref} className="rounded-lg bg-electric-teal px-5 py-3 text-sm font-bold text-deep-navy hover:bg-light-teal">What Is Still Manual?</a>
+          <Link to="/book" className="text-sm font-semibold text-slate-200 hover:text-light-teal">Book a Call</Link>
+          <Link to="/start" className="rounded-lg bg-electric-teal px-5 py-3 text-sm font-bold text-deep-navy hover:bg-light-teal">Show Us What Is Still Manual</Link>
         </nav>
         <button type="button" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)} className="shrink-0 rounded-md p-2 md:hidden">{open ? <X /> : <Menu />}</button>
       </div>
@@ -38,7 +38,8 @@ const Header: React.FC = () => {
         <div className="mx-auto flex max-w-7xl flex-col gap-4">
           {sectionLinks.map(([id, label]) => <button key={id} type="button" onClick={() => goToSection(id)} className="py-2 text-left font-semibold text-slate-200">{label}</button>)}
           <Link to="/about" onClick={() => setOpen(false)} className="py-2 font-semibold text-slate-200">How it works</Link>
-          <a href={contactHref} className="mt-2 rounded-lg bg-electric-teal px-5 py-3 text-center font-bold text-deep-navy">What Is Still Manual?</a>
+          <Link to="/book" onClick={() => setOpen(false)} className="py-2 font-semibold text-slate-200">Book a 20-Minute Workflow Call</Link>
+          <Link to="/start" onClick={() => setOpen(false)} className="mt-2 rounded-lg bg-electric-teal px-5 py-3 text-center font-bold text-deep-navy">Show Us What Is Still Manual</Link>
         </div>
       </nav>}
     </header>

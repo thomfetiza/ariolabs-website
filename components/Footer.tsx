@@ -12,6 +12,8 @@ const Footer: React.FC = () => {
           <a href="mailto:info@ariolabs.tech" className="mt-3 inline-block text-sm font-semibold text-light-teal hover:underline">info@ariolabs.tech</a>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-300">
+          <Link to="/start" className="hover:text-white">Show Us What Is Still Manual</Link>
+          <Link to="/book" className="hover:text-white">Book a 20-Minute Workflow Call</Link>
           <Link to="/case-studies" className="hover:text-white">Selected work</Link>
           <Link to="/about" className="hover:text-white">How it works</Link>
           <Link to="/privacy-policy" className="hover:text-white">Privacy</Link>
